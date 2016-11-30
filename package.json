@@ -1,0 +1,11 @@
+{
+  "name": "NodeOAuth",
+  "version": "0.0.0",
+  "description": "Template",
+  "main": "server.js",
+  "repository": "",
+  "author": "Pankaj Yadav <pankajyadavas@gmail.com>",
+  "dependencies": {
+    "express": "~4.12.3"
+  }
+}
