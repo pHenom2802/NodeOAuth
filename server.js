@@ -5,6 +5,11 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
+var mongoose = require('mongoose');
+var mongoDbUrl = require('./conf/conf.js').mongoDBUrl;
+console.log(mongoDbUrl);
+mongoose.connect(mongoDbUrl);
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({ secret: 'someultrasecrectSecret',
