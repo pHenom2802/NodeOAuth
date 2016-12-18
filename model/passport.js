@@ -39,4 +39,24 @@ module.exports = function(passport){
 					});
 				});
 	}));
+
+        passport.use('Login', new localStartegy({
+                                        usernameField: 'username',
+                                        passwordField: 'password'
+                                },
+                        function(username, password, done){
+                                process.nextTick(function(){
+                                        User.findOne({'local.username': username}, function(err, user){
+                                                if(err)
+                                                        return done(err);
+                                                if(!user)
+                                                        return done(null, false);
+						if(user.local.password != password)
+							return done(null, false);
+                                                else{
+							return done(null, user);
+                                                }
+                                        });
+                                });
+        }));
 }

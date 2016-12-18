@@ -27,7 +27,17 @@ var auth = express.Router();
 require('./router/auth.js')(auth, passport);
 app.use('/auth', auth);
 
+var isAuthenticated = function(req, res, next){
+				if(req.isAuthenticated())
+					return next();
+				else
+					res.redirect('auth/login');
+			};
+
+app.get('/profile', isAuthenticated, function(req, res){
+	res.send('Your profile');
+});
 app.get('/',function(req, res){
-	res.send('New data ' + req.session.id);
+	res.send('New data ',  req.session.id, req.cookies);
 });
 app.listen(8080);
